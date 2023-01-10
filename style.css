@@ -1,0 +1,14 @@
+#chart1, #chart2 {
+    width: 500px;
+    height: 300px;
+}
+
+td, th {
+    border: 1px solid rgb(0, 0, 0);
+}
+
+nav {
+    display: flex;
+    width: 100vw;
+    justify-content: space-around;
+}

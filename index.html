@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <nav id="liveQuotes">
+
+    </nav>
+
+    <h1>STOCKS</h1>
+
+
+    <label for="ticker">Seleccione un ticker:</label>
+    <select id="ticker">
+        <option value="AAPL">Apple</option>
+        <option value="MSFT">Microsoft</option>
+        <option value="AMZN">Amazon</option>
+        <option value="GOOGL">Alphabet</option>
+        <option value="FB">Facebook</option>
+        <option value="T">AT&T</option>
+        <option value="CSCO">Cisco Systems</option>
+        <option value="JNJ">Johnson & Johnson</option>
+        <option value="PFE">Pfizer</option>
+        <option value="XOM">Exxon Mobil</option>
+        <option value="PG">Procter & Gamble</option>
+        <option value="V">Visa</option>
+        <option value="KO">Coca-Cola</option>
+        <option value="MCD">McDonald's</option>
+        <option value="DIS">Disney</option>
+        <option value="INTC">Intel</option>
+        <option value="MRK">Merck</option>
+        <option value="CMCSA">Comcast</option>
+        <option value="GS">Goldman Sachs</option>
+        <option value="PEP">PepsiCo</option>
+        <option value="IBM">IBM</option>
+        <option value="NKE">Nike</option>
+        <option value="VZ">Verizon</option>
+        <option value="JCI">Johnson Controls</option>
+        <option value="WMT">Wal-Mart</option>
+        <option value="PEP">PepsiCo</option>
+        <option value="HPQ">Hewlett-Packard</option>
+        <option value="INTC">Intel</option>
+        <option value="DELL">Dell Technologies</option>
+        <option value="UNH">UnitedHealth Group</option>
+        <option value="LOW">Lowe's</option>
+        <option value="WBA">Walgreens Boots Alliance</option>
+        <option value="COP">ConocoPhillips</option>
+        <option value="AXP">American Express</option>
+        <option value="XOM">ExxonMobil</option>
+        <option value="PEP">PepsiCo</option>
+        <option value="MCD">McDonald's</option>
+        <option value="GS">Goldman Sachs</option>
+        <option value="V">Visa</option>
+        <option value="PG">Procter & Gamble</option>
+        <option value="JNJ">Johnson & Johnson</option>
+        <option value="KO">Coca-Cola</option>
+        <option value="INTC">Intel</option>
+        <option value="GS">Goldman Sachs</option>
+    </select>
+
+
+
+
+    <label for="start_date">Start Date</label>
+
+    <input type="date" id="start_date">
+    <label for="end_date">End Date</label>
+    <input type="date" id="end_date">
+
+    <button onclick="Submit()">Search</button>
+
+    <div id="chart1">
+        <canvas id="timeSeries"></canvas>
+    </div>
+    <div id="chart2">
+        <canvas id="returns"></canvas>
+    </div>
+
+    <table hidden id="mainTable">
+        <thead>
+            <tr id="periods">
+                <th>Account</th>
+            </tr>
+        </thead>
+        <tbody id="finTable">
+        </tbody>
+
+    </table>
+
+
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./index.js" type="text/javascript"></script>
+</body>
+
+</html>
+Footer
+© 2023 GitHub, Inc.
+Footer navigation
+Terms
+Privacy
+Security
+Status
