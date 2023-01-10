@@ -11,12 +11,33 @@
 
 <body>
     <nav id="liveQuotes">
-
     </nav>
 
+    <h1>Screener</h1>
+    <div class="t1">
+        <table>
+            <thead>
+                <tr>
+                    <th>Company</th>
+                    <th>Sector</th>
+                    <th>Industry</th>
+                    <th>Current Price</th>
+                </tr>
+            </thead>
+            <tbody id="screener">
+            </tbody>
+        </table>
+
+        <div id="chart3">
+            <canvas id="marketCap"></canvas>
+        </div>
+    </div>
+
+    
+
+
+
     <h1>STOCKS</h1>
-
-
     <label for="ticker">Seleccione un ticker:</label>
     <select id="ticker">
         <option value="AAPL">Apple</option>
@@ -64,24 +85,24 @@
         <option value="INTC">Intel</option>
         <option value="GS">Goldman Sachs</option>
     </select>
-
-
-
-
     <label for="start_date">Start Date</label>
-
     <input type="date" id="start_date">
     <label for="end_date">End Date</label>
     <input type="date" id="end_date">
-
     <button onclick="Submit()">Search</button>
 
+<section>
     <div id="chart1">
         <canvas id="timeSeries"></canvas>
     </div>
     <div id="chart2">
         <canvas id="returns"></canvas>
     </div>
+</section>
+
+
+
+
 
     <table hidden id="mainTable">
         <thead>
@@ -108,10 +129,3 @@
 </body>
 
 </html>
-Footer
-© 2023 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status

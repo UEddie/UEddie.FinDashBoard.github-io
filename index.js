@@ -17,7 +17,7 @@ function Submit() {
     let end_date = rawEnd_date.replace('/', '-')
 
     let ticker = { name, start_date, end_date };
-
+    console.log(ticker)
     searchTicker(ticker.name, ticker.start_date, ticker.end_date)
 }
 
@@ -27,8 +27,8 @@ function searchTicker(name, startdate, enddate) {
     fetch(urlP)
         .then((res) => res.json())
         .then((data) => {
-            loadTicker(data)
             console.log(data)
+            loadTicker(data)
         })
         .catch((error) => {
             console.log(error)
@@ -73,7 +73,6 @@ function loadTicker(asset) {
     }
 
     priceReturns(dates, returns, loadStock)
-
 }
 
 
@@ -135,8 +134,8 @@ function loadStatements(financials) {
 
 // IMPORTAMOS DATOS DEL ACTIVO Y LOS GRAFICAMOS
 function timeSeries(stockDate, stockPrices, stockName) {
-    const clines = document.getElementById('timeSeries')
-    new Chart(clines, {
+    const clines = document.getElementById('timeSeries');
+    myChart = new Chart(clines, {
         type: 'line',
         data: {
             labels: stockDate,
@@ -158,11 +157,11 @@ function timeSeries(stockDate, stockPrices, stockName) {
         },
     })
 
-
 }
 
 function priceReturns(stockDate, stockReturns, stockName) {
     const clines = document.getElementById('returns')
+
     new Chart(clines, {
         type: 'line',
         data: {
@@ -188,22 +187,72 @@ function priceReturns(stockDate, stockReturns, stockName) {
 
 }
 
-
+// Configuramos API para importar los precios a nuestro header.
 fetch('https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/usd.json')
-  .then(response => response.json())
-  .then(data => {
-    // Aquí puedes hacer lo que necesites con los datos que recibiste
-    console.log(data.usd.ada);
-    const navPrices = document.getElementById("liveQuotes");
-    navPrices.innerHTML = `<p>USD / EUR: ${data.usd.eur}</p>
+    .then(response => response.json())
+    .then(data => {
+        // Aquí puedes hacer lo que necesites con los datos que recibiste
+        console.log(data.usd.ada);
+        const navPrices = document.getElementById("liveQuotes");
+        navPrices.innerHTML = `<p>USD / EUR: ${data.usd.eur}</p>
     <p>USD / AUD: ${data.usd.aud}</p>
     <p>USD / COP: ${data.usd.cop}</p>
     <p>USD / JPY: ${data.usd.jpy}</p>
     <p>USD / GBP: ${data.usd.gbp}</p>
     <p>USD / CHF: ${data.usd.chf}</p>
     `
-  })
-  .catch(error => {
-    // En caso de error, puedes manejarlo aquí
-    console.error(error);
-  });
+    })
+    .catch(error => {
+        // En caso de error, puedes manejarlo aquí
+        console.error(error);
+    });
+
+// Probamos la API de https://site.financialmodelingprep.com/developer/docs/api-keys
+const urlFMP = 'https://financialmodelingprep.com/api/v3/stock-screener?marketCapLowerThan=10000000000000&betaMoreThan=1&volumeMoreThan=100&exchange=NASDAQ&apikey=2483627eece04f196c06dc8ebd293e6e'
+fetch(urlFMP)
+    .then((res) => res.json())
+    .then((data) => {
+        let screener = document.getElementById("screener")
+        let screenNames = [];
+        let screenCap = [];
+
+        for (let i = 0; i < 20; i++) {
+            screener.innerHTML += `
+            <td>${data[i].symbol}</td>
+            <td>${data[i].sector} </td>
+            <td>${data[i].industry} </td>
+            <td>${data[i].price} </td>`
+            
+            screenNames[i] = data[i].symbol;
+            screenCap[i] = data[i].marketCap;
+        }
+
+        const clines = document.getElementById('marketCap')
+        new Chart(clines, {
+            type: 'pie',
+            data: {
+                labels: screenNames,
+                datasets: [
+                    {
+                        label: 'Market Cap',
+                        data: screenCap,
+                        borderWidth: 1,
+                        borderColor: 'rgb(43, 5, 139)'
+                    },
+                ],
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                    },
+                },
+            },
+        })
+        
+
+    })
+
+    .catch((error) => {
+        console.log(error)
+    })
